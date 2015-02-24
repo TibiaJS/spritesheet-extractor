@@ -1,10 +1,10 @@
 # Sprite Sheet Extractor
 
-JavaScript Sprite Sheet Extractor for Open Tibia written in NodeJS.
+Sprite Sheet Extractor for Open Tibia written in JavaScript and powered by Node.js.
 
 ## Getting Started
 
-1. Clone this repo
+1. Clone this repo.
 2. Install dependencies using `npm install`
 3. Just type `node index.js <Dat location> <Spr location> <Category (item|outfit|effect|missile)> <id> [Output Dir]`
 4. Check out a `out` folder
