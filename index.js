@@ -15,7 +15,7 @@ var fs       = require('fs'),
 
 // Checking extension of datFile.
 if(datFile.substring((datFile.length - 4), datFile.length) != '.dat') {
-  throw new Error('Only .dat is allowed!');
+  throw new Error('Only .dat is allowed for the first argument!');
 }
 
 // Checking if the dat file exists.
@@ -25,7 +25,7 @@ if(!fs.existsSync(datFile)) {
 
 // Checking if extension of sprFile.
 if(sprFile.substring((sprFile.length - 4), sprFile.length) != '.spr') {
-  throw new Error('Only .spr is allowed!');
+  throw new Error('Only .spr is allowed for the second argument!');
 }
 
 // Checking if the spr file exists.
@@ -33,7 +33,7 @@ if(!fs.existsSync(sprFile)) {
   throw new Error('File not found: ' + sprFile);
 }
 
-// Checking if the second argument passed otherwise set to default output.
+// Checking if the last argument passed otherwise set to default output.
 if(!outDir) {
   outDir = './out/';
 } else if (outDir.charAt(outDir.length-1) !='/') { // Check if last char is '/'
