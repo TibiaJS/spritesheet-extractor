@@ -1,6 +1,6 @@
 {
   "name": "spritesheet-extrator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Exports a client graphic as sprite sheet.",
   "main": "index.js",
   "scripts": {
