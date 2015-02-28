@@ -120,7 +120,7 @@ var metadata = new Metadata(datFile, function(dat) {
                 }
             }
             var image = createSpriteSheet(group, spr);
-            image.writeImage('./out/' + fileName + '.png');
+            image.writeImage(outDir + fileName + '.png');
           }
         }
     })
