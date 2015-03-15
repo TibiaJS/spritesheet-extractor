@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var fs = require('fs');
 var BufferReader = require('buffer-reader');
@@ -13,19 +13,19 @@ function Metadata(file, cb) {
   }
 
   // Setupping variables
-  this.signature    = 0,
-  this.items        = [],
-  this.outfits      = [],
-  this.effects      = [],
-  this.missiles     = [],
-  this.itemCount    = 0,
-  this.outfitCount  = 0,
-  this.effectCount  = 0,
+  this.signature    = 0;
+  this.items        = [];
+  this.outfits      = [];
+  this.effects      = [];
+  this.missiles     = [];
+  this.itemCount    = 0;
+  this.outfitCount  = 0;
+  this.effectCount  = 0;
   this.missileCount = 0;
 
   var self = this;
   fs.readFile(file, function(err, buffer) {
-    if (err) throw err;
+    if (err) { throw err; }
 
     self._readLists(buffer);
 
@@ -54,46 +54,46 @@ Metadata.prototype.getMissileCount = function() {
 };
 
 Metadata.prototype.hasThingType = function(category, id) {
-  if (category == 'item') {
+  if (category === 'item') {
     return (id >= 100 && id <= this.itemCount);
-  } else if (category == 'outfit') {
+  } else if (category === 'outfit') {
     return (id >= 1 && id <= this.outfitCount);
-  } else if (category == 'effect') {
+  } else if (category === 'effect') {
     return (id >= 1 && id <= this.effectCount);
-  } else if (category == 'missile') {
+  } else if (category === 'missile') {
     return (id >= 1 && id <= this.missileCount);
   }
   return false;
 };
 
 Metadata.prototype.getThingType = function(category, id) {
-  if (category == 'item') {
+  if (category === 'item') {
     return this.getItem(id);
-  } else if (category == 'outfit') {
+  } else if (category === 'outfit') {
     return this.getOutfit(id);
-  } else if (category == 'effect') {
+  } else if (category === 'effect') {
     return this.getEffect(id);
-  } else if (category == 'missile') {
+  } else if (category === 'missile') {
     return this.getMissile(id);
   }
   return null;
 };
 
 Metadata.prototype.getMinId = function(category) {
-  if (category == 'item') {
+  if (category === 'item') {
     return 100;
   }
   return 1;
 };
 
 Metadata.prototype.getMaxId = function(category) {
-  if (category == 'item') {
+  if (category === 'item') {
     return this.itemCount;
-  } else if (category == 'outfit') {
+  } else if (category === 'outfit') {
     return this.outfitCount;
-  } else if (category == 'effect') {
+  } else if (category === 'effect') {
     return this.effectCount;
-  } else if (category == 'missile') {
+  } else if (category === 'missile') {
     return this.missileCount;
   }
   return 0;
@@ -151,7 +151,7 @@ Metadata.prototype._readLists = function(buffer) {
     for (id = 1; id <= this.missileCount; id++) {
       this.missiles[id] = this._readThing(id, 'missile');
     }
-}
+};
 
 Metadata.prototype._readThing = function(id, category) {
 
@@ -256,6 +256,6 @@ Metadata.prototype._readThing = function(id, category) {
     thing.groups[groupType] = group;
   }
   return thing;
-}
+};
 
 module.exports = Metadata;

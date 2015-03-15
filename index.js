@@ -1,4 +1,5 @@
-"use strict";
+#!/usr/bin/env node
+'use strict';
 
 // Process
 var datFile  = process.argv[2],
@@ -10,8 +11,8 @@ var datFile  = process.argv[2],
 // Require
 var fs       = require('fs'),
     PNGImage = require('pngjs-image'),
-    Metadata = require('./lib/Metadata.js'),
-    Sprites  = require('./lib/Sprites.js');
+    Metadata = require('./src/Metadata'),
+    Sprites  = require('./src/Sprites');
 
 // Checking extension of datFile.
 if(datFile.substring((datFile.length - 4), datFile.length) != '.dat') {

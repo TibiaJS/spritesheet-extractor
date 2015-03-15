@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 var fs = require('fs');
 var BufferReader = require('buffer-reader');
@@ -12,12 +12,12 @@ function Sprites(file, cb) {
   }
 
   // Setupping variables
-  this.signature   = 0,
+  this.signature   = 0;
   this.spriteCount = 0;
 
   var self = this;
   fs.readFile(file, function(err, buffer) {
-    if (err) throw err;
+    if (err) { throw err; }
 
     reader           = new BufferReader(buffer);
     self.signature   = reader.nextUInt32LE();
@@ -29,18 +29,18 @@ function Sprites(file, cb) {
 
 Sprites.prototype.getSignature = function() {
   return this.signature;
-}
+};
 
 Sprites.prototype.getSpriteCount = function() {
   return this.spriteCount;
-}
+};
 
 Sprites.prototype.copyPixels = function(spriteId, image, x, y) {
   var formula = 8 + (spriteId - 1) * 4;
   reader.seek(formula);
     
   var address = reader.nextUInt32LE();
-  if (address == 0) { // Address 0 always is an empty sprite.
+  if (address === 0) { // Address 0 always is an empty sprite.
     return;
   }
   reader.seek(address);
@@ -65,6 +65,6 @@ Sprites.prototype.copyPixels = function(spriteId, image, x, y) {
       currentPixel++;
     }
   }
-}
+};
 
 module.exports = Sprites;

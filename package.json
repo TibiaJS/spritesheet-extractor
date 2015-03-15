@@ -1,31 +1,41 @@
 {
-  "name": "spritesheet-extrator",
-  "version": "0.0.2",
-  "description": "Exports a client graphic as sprite sheet.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/TibiaJS/spritesheet-extractor"
-  },
-  "keywords": [
-    "open tibia",
-    "sprite sheet"
-  ],
+  "name": "tibia-spritesheet-extractor",
+  "version": "0.0.3",
+  "description": "CLI Tool to extract SpriteSheet from Tibia Spr & Dat files",
+  "homepage": "https://github.com/TibiaJS/spritesheet-extractor",
   "author": {
     "name": "Nailson Santos",
-    "email" : "nailsonnego@gmail.com",
-    "url" : "https://github.com/Mignari"
-    },
-  "license": "BSD",
-  "bugs": {
-    "url": "https://github.com/TibiaJS/spritesheet-extractor/issues"
+    "email": "nailsonnego@gmail.com",
+    "url": "https://github.com/Mignari"
   },
-  "homepage": "https://github.com/TibiaJS/spritesheet-extractor",
+  "repository": "TibiaJS/tibia-spritesheet-extractor",
+  "license": "BSD",
+  "keywords": [
+    "tibia-spritesheet-extractor",
+    "tibia",
+    "spritesheet",
+    "extractor",
+    "cipsoft",
+    "tibiajs"
+  ],
   "dependencies": {
     "buffer-reader": "0.0.2",
     "pngjs-image": "^0.9.3"
+  },
+  "devDependencies": {
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "load-grunt-tasks": "^1.0.0",
+    "time-grunt": "^1.0.0",
+    "grunt-mocha-cli": "^1.11.0",
+    "jshint-stylish": "^1.0.0"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "bin": {
+    "tibia-spritesheet-extractor": "index.js"
   }
 }
