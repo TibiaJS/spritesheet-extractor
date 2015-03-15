@@ -15,7 +15,7 @@ var fs       = require('fs'),
     Sprites  = require('./src/Sprites');
 
 // Checking extension of datFile.
-if(datFile.substring((datFile.length - 4), datFile.length) != '.dat') {
+if(datFile.substring((datFile.length - 4), datFile.length) !== '.dat') {
   throw new Error('Only .dat is allowed for the first argument!');
 }
 
@@ -25,7 +25,7 @@ if(!fs.existsSync(datFile)) {
 }
 
 // Checking if extension of sprFile.
-if(sprFile.substring((sprFile.length - 4), sprFile.length) != '.spr') {
+if(sprFile.substring((sprFile.length - 4), sprFile.length) !== '.spr') {
   throw new Error('Only .spr is allowed for the second argument!');
 }
 
@@ -37,7 +37,7 @@ if(!fs.existsSync(sprFile)) {
 // Checking if the last argument passed otherwise set to default output.
 if(!outDir) {
   outDir = './out/';
-} else if (outDir.charAt(outDir.length-1) !='/') { // Check if last char is '/'
+} else if (outDir.charAt(outDir.length-1) !== '/') { // Check if last char is '/'
   outDir = outDir + '/';
 }
 
@@ -52,11 +52,11 @@ if(!fs.existsSync(outDir)) {
 
 var getTextureIndex = function(group, l, x, y, z, f) {
   return (((f % group.frames * group.patternZ + z) * group.patternY + y) * group.patternX + x) * group.layers + l;
-}
+};
 
 var getSpriteIndex = function(group, w, h, l, x, y, z, f) {
   return ((((((f % group.frames) * group.patternZ + z) * group.patternY + y) * group.patternX + x) * group.layers + l) * group.height + h) * group.width + w;
-}
+};
 
 var createSpriteSheet = function(frameGroup, spr) {
   // Measures and creates the image.
@@ -97,7 +97,7 @@ var createSpriteSheet = function(frameGroup, spr) {
     }
   }
   return image;
-}
+};
 
 var metadata = new Metadata(datFile, function(dat) {
   if (!dat.hasThingType(category, id)) {
@@ -112,8 +112,8 @@ var metadata = new Metadata(datFile, function(dat) {
           var group = thing.getFrameGroup(i);
           if (group != null) {
             var fileName = category + '_' + id;
-            if (category == 'outfit') {
-                if (i == 0) {
+            if (category === 'outfit') {
+                if (i === 0) {
                   fileName = 'idle_' + fileName;
                 }
                 else {
@@ -124,5 +124,5 @@ var metadata = new Metadata(datFile, function(dat) {
             image.writeImage(outDir + fileName + '.png');
           }
         }
-    })
+    });
 });
