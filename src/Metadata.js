@@ -5,8 +5,10 @@ var BufferReader = require('buffer-reader');
 var ThingType = require("./ThingType.js");
 var reader;
 
-function Metadata(file, cb) {
+function Metadata() {
+}
 
+Metadata.prototype.load = function(file, cb) {
   // Checking if file exists
   if(!fs.existsSync(file)) {
     throw new Error('File not found: ' + file);
@@ -31,7 +33,7 @@ function Metadata(file, cb) {
 
     cb(self);
   });
-}
+};
 
 Metadata.prototype.getSignature = function() {
   return this.signature;

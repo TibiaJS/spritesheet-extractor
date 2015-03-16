@@ -4,8 +4,10 @@ var fs = require('fs');
 var BufferReader = require('buffer-reader');
 var reader;
 
-function Sprites(file, cb) {
+function Sprites() {
+}
 
+Sprites.prototype.load = function(file, cb) {
   // Checking if file exists
   if(!fs.existsSync(file)) {
     throw new Error('File not found: ' + file);
@@ -25,7 +27,7 @@ function Sprites(file, cb) {
 
     cb(self);
   });
-}
+};
 
 Sprites.prototype.getSignature = function() {
   return this.signature;
@@ -49,7 +51,7 @@ Sprites.prototype.copyPixels = function(spriteId, image, x, y) {
   reader.move(3);
 
   var pixelDataSize = reader.nextUInt16LE();
-  if (pixelDataSize == 0) { return; }
+  if (pixelDataSize === 0) { return; }
 
   var size         = 32,
       read         = 0,

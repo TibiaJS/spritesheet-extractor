@@ -96,14 +96,16 @@ var createSpriteSheet = function(frameGroup, spr) {
   return image;
 };
 
-var metadata = new Metadata(datFile, function(dat) {
+var metadata = new Metadata();
+    metadata.load(datFile, function(dat) {
   if (!dat.hasThingType(category, id)) {
     var maxid = dat.getMaxId(category);
     console.log('Invalid ' + category + ' id ' + id + '. The max ' + category + ' id is ' + maxid + '.');
     return;
   }
 
-  var sprites = new Sprites(sprFile, function (spr) {
+  var sprites = new Sprites();
+      sprites.load(sprFile, function (spr) {
         var thing = dat.getThingType(category, id);
         for (var i = 0; i < thing.groups.length; i++) {
           var group = thing.getFrameGroup(i);
