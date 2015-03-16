@@ -68,9 +68,6 @@ var createSpriteSheet = function(frameGroup, spr) {
       pixelsWidth  = frameGroup.width * size,
       pixelsHeight = frameGroup.height * size,
       image        = PNGImage.createImage(bitmapWidth, bitmapHeight);
-  
-  // Fills the image with magenta color.
-  image.fillRect(0, 0, bitmapWidth, bitmapHeight, {red:255, green:0, blue:255, alpha:255});
 
   for (var f = 0; f < frameGroup.frames; f++) {
     for (var z = 0; z < frameGroup.patternZ; z++) {

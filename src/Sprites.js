@@ -48,12 +48,23 @@ Sprites.prototype.copyPixels = function(spriteId, image, x, y) {
   // Skipping color key.
   reader.move(3);
 
-  var size         = 32,
-      offset       = reader.tell() + reader.nextUInt16LE(),
-      currentPixel = 0,
-      color        = {red:0, green:0, blue:0, alpha:255};
+  var pixelDataSize = reader.nextUInt16LE();
+  if (pixelDataSize == 0) { return; }
 
-  while(reader.tell() < offset) {
+  var size         = 32,
+      read         = 0,
+      currentPixel = 0,
+      color        = {red:0, green:0, blue:0, alpha:0};
+      
+  for (var px = 0; px < size;  px++) {
+    for (var py = 0; py < size;  py++) {
+      image.setPixel(px + x, py + y, color);
+    }
+  }
+
+  color.alpha = 255;
+
+  while(read < pixelDataSize) {
     var transparentPixels = reader.nextUInt16LE(),
         coloredPixels     = reader.nextUInt16LE();
     currentPixel += transparentPixels;
@@ -64,6 +75,7 @@ Sprites.prototype.copyPixels = function(spriteId, image, x, y) {
       image.setPixel(parseInt(currentPixel % size) + x, parseInt(currentPixel / size) + y, color);
       currentPixel++;
     }
+    read += 4 + (coloredPixels * 3);
   }
 };
 
